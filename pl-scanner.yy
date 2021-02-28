@@ -1,5 +1,5 @@
 %{ 
-//name, ID; 
+//Colin Hinzie, 113383720; 
 
 #include "tokens.h"
 # undef yywrap
@@ -35,29 +35,81 @@ ALPHA [a-zA-Z]
 [\n]+				
 
 
-";"							  { 
-										return ';'; 
+";"		  { 
+		    return ';'; 
                   }
 
-"="							  { 
-										return OP_ASSIGN; 
+"="		  { 
+		    return OP_ASSIGN; 
                   }
 
-"main"					{ 
-										return K_MAIN; 
+"+"		  {
+		    return OP_ADD;
+		  }
+
+"-"		  {
+		    return OP_SUB;
+		  }
+
+"*"		  {
+		    return OP_MUL;
+		  }
+
+"/"		  {
+		    return OP_DIV;
+		  }
+
+"+="		  {
+		    return OP_ADDINC;
+		  }
+
+"++"		  {
+		    return OP_PLUSPLUS;
+		  }
+
+"<="		  {
+		    return OP_LEQ;
+		  }
+
+">="		  {
+		    return OP_GEQ;
+		  }
+
+"=="	          {
+		    return OP_EQ;
+		  }
+
+"~="		  {
+		    return OP_DIFF;
+		  }
+
+"<"		  {
+		    return OP_LT;
+		  }
+
+">"		  {
+		    return OP_GT;
+		  }
+
+
+
+
+
+"main"		  { 
+		    return K_MAIN; 
                   }
 
 
-{DIGIT}+					{ 
-										return L_INTEGER;
-									}
+{DIGIT}+	  { 
+		    return L_INTEGER;
+		  }
 
 {ALPHA}+        { 
-									return T_ID;
-							  }
+		  return T_ID;
+	        }
 
-<<EOF>>						{ return T_EOF ; }
-.									{ return yytext[0]; }
+<<EOF>>		  { return T_EOF ; }
+.		  { return yytext[0]; }
 
 
 
