@@ -25,6 +25,7 @@ YY_DECL;
 
 DIGIT [0-9] 
 ALPHA [@][a-zA-Z][a-zA-Z0-9_]*
+FLOAT [0-9]?[+-]?[0-9]+"."[0-9]+ 
 %%
 
 
@@ -89,7 +90,42 @@ ALPHA [@][a-zA-Z][a-zA-Z0-9_]*
 ">"		  {
 		    return OP_GT;
 		  }
-
+"print"		  {
+		    return K_PRINT;
+		  }
+"foreach"	  {
+		    return K_FOREACH;
+		  }
+"while"		  {
+		    return K_WHILE;
+		  }
+"repeat"	  {
+		    return K_REPEAT;
+		  }
+"until"	  	  {
+		    return K_UNTIL;
+		  }
+"begin"		  {
+		    return K_BEGIN;
+		  }
+"end"	          {
+		    return K_END;
+		  }
+"declare"	  {
+		    return K_DECLARE;
+		  }
+"if"	    	  {
+		    return K_IF;
+		  }
+"then"	   	  {
+		    return K_THEN;
+		  }
+"integer"	  {
+		    return K_INTEGER;
+		  }
+"float"		  {
+		    return K_FLOAT;
+		  }
 
 
 
@@ -106,6 +142,11 @@ ALPHA [@][a-zA-Z][a-zA-Z0-9_]*
 {ALPHA}           { 
 		    return T_ID;
 	          }
+
+{FLOAT}		  {
+		    return L_FLOAT;
+		  }
+
 
 <<EOF>>		  { return T_EOF ; }
 .		  { return yytext[0]; }
