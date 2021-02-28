@@ -24,8 +24,7 @@ YY_DECL;
 %option noyywrap 
 
 DIGIT [0-9] 
-ALPHA [a-zA-Z]
-
+ALPHA [@][a-zA-Z][a-zA-Z0-9_]*
 %%
 
 
@@ -104,9 +103,9 @@ ALPHA [a-zA-Z]
 		    return L_INTEGER;
 		  }
 
-{ALPHA}+        { 
-		  return T_ID;
-	        }
+{ALPHA}           { 
+		    return T_ID;
+	          }
 
 <<EOF>>		  { return T_EOF ; }
 .		  { return yytext[0]; }
